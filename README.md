@@ -1,71 +1,3 @@
-# doxxeguy.github.io
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estrellas en GitHub Pages</title>
-  <style>
-    /* Estilos para el fondo de estrellas */
-    body {
-      margin: 0;
-      height: 100vh;
-      background: black;
-      overflow: hidden;
-    }
-
-    .estrella {
-      position: absolute;
-      border-radius: 50%;
-      background-color: white;
-      opacity: 0.7;
-      animation: parpadeo 1.5s infinite alternate;
-    }
-
-    @keyframes parpadeo {
-      0% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-
-    /* Estilo para centrar el contenido */
-    .contenido {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="contenido">
-    <h1>Bienvenidos a mi página de estrellas</h1>
-    <p>Este es un fondo de estrellas en GitHub Pages</p>
-  </div>
-
-  <script>
-    // Crear estrellas en el fondo
-    for (let i = 0; i < 100; i++) {
-      let estrella = document.createElement('div');
-      estrella.classList.add('estrella');
-      
-      let tamaño = Math.random() * 3 + 1; // Estrella de tamaño entre 1px y 3px
-      let x = Math.random() * window.innerWidth;
-      let y = Math.random() * window.innerHeight;
-
-      estrella.style.width = `${tamaño}px`;
-      estrella.style.height = `${tamaño}px`;
-      estrella.style.left = `${x}px`;
-      estrella.style.top = `${y}px`;
-
-      document.body.appendChild(estrella);
-    }
-  </script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +29,26 @@
             top: 100px; /* Move the moon down */
             transform: rotate(-45deg); /* Rotate the moon to the left */
         }
-        .discord-button {
+        .button-container {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: 90px; /* Move the buttons slightly up */
+            left: 20px; /* Move the buttons slightly to the right */
+            animation: fadeIn 2s infinite alternate; /* Add animation */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: black;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .main-page-button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
@@ -108,13 +59,10 @@
             text-decoration: none;
             cursor: pointer;
             margin-top: 20px;
-            position: relative;
-            top: 80px; /* Move the Discord button up */
-            animation: fadeIn 2s infinite alternate; /* Add animation */
         }
         h1 {
             margin: 0;
-            font-size: 3em;
+            font-size: 5em; /* Make the text larger */
             color: white;
             text-align: center;
             position: relative;
@@ -126,13 +74,16 @@
             font-size: 1.5em;
             color: white;
             position: relative;
-            top: 100px; /* Move the description text slightly up */
+            top: 80px; /* Move the description text slightly up */
             animation: fadeIn 2s infinite alternate; /* Add animation */
         }
-        .image-container {
-            position: relative;
-            top: 100px; /* Position image below the Discord button */
-            animation: fadeIn 2s infinite alternate; /* Add animation */
+        .tos-content {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: white;
+            text-align: left;
+            animation: slideIn 1s ease-out forwards; /* Add different animation */
         }
         @keyframes fadeIn {
             0% { opacity: 0; }
@@ -142,15 +93,48 @@
             0% { background-position: 0 0, 0 0, 0 0, 0 0; }
             100% { background-position: 100px 100px, 100px 100px, 100px 100px, 100px 100px; }
         }
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="moon"></div>
     <h1>Project Zero</h1>
     <div class="description">Roblox #1 ServerSide On The Market<br>Good TOS and Cheap<br>Buy Now!</div>
-    <a href="https://discord.gg/jsfCbVMM" class="discord-button">discord</a>
-    <div class="image-container">
-        <img src="https://cdn.discordapp.com/attachments/1350581410863517696/1355500825312755832/cutiress.png?ex=67e92804&is=67e7d684&hm=1a5e96630c3ec81ae373981e7649f9a81d31e7a5a960d7e246a59c9850abea41&" alt="Image">
+    <div class="button-container">
+        <a href="https://discord.gg/jsfCbVMM" class="button">Discord</a>
+        <a href="https://www.youtube.com/@Cendicate" class="button">YouTube</a>
+        <a class="button" onclick="showTOS()">TOS</a>
     </div>
+    <div class="tos-content">
+        <p>Follow Our TOS Or You Will Be Blacklisted</p>
+        <p>#1 - No External Executors<br>Serversided external executors disallow staff from reviewing scripts executed, granting users to execute scripts and potentially destroy a game.</p>
+        <p>#2 - No Script Viewers<br>Scripts such as Dex are prohibited since users can modify the game itself in anyway including deleting the entire map and mass killing players in-game.</p>
+        <p>#3 - No NSFW Scripts<br>Scripts such as GKV4 and Nekos are strictly prohibited as they can lead to our games getting moderated.</p>
+        <p>#3 - No Map Changers<br>Modifying the entire game map itself to load in a different map is highly prohibited.</p>
+        <p>#4 - No mass kicking/banning<br>Mass Kicking users from games leads to our game's player count to decrease. Mass banning players from games prevents them from joining any other server from the game.</p>
+        <p>#5 - No Snitching</p>
+        <p>#6 - No things like k00pgui Or C00lguis or Destructive GUIS</p>
+        <a class="main-page-button" onclick="showMainPage()">MAIN PAGE</a>
+    </div>
+    <script>
+        function showTOS() {
+            document.querySelector('.moon').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.description').style.display = 'none';
+            document.querySelector('.button-container').style.display = 'none';
+            document.querySelector('.tos-content').style.display = 'block';
+        }
+
+        function showMainPage() {
+            document.querySelector('.moon').style.display = 'block';
+            document.querySelector('h1').style.display = 'block';
+            document.querySelector('.description').style.display = 'block';
+            document.querySelector('.button-container').style.display = 'flex';
+            document.querySelector('.tos-content').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
